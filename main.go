@@ -28,7 +28,4 @@ func main() {
 	if err := server.Run(); err != nil {
 		log.Fatalf("Server exited with error: %v", err)
 	}
-
-	// os.Exit(0) is redundant here since main() returning has the same effect
-	os.Exit(0)
 }
