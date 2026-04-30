@@ -24,7 +24,11 @@ func main() {
 	log.Printf("Starting ds2api %s on port %s", Version, cfg.Port)
 	log.Printf("Build info: version=%s", Version)
 	// Log the Go environment for easier debugging during local development
-	log.Printf("Environment: %s", os.Getenv("APP_ENV"))
+	appEnv := os.Getenv("APP_ENV")
+	if appEnv == "" {
+		appEnv = "development" // default to development if APP_ENV is not set
+	}
+	log.Printf("Environment: %s", appEnv)
 
 	server := NewServer(cfg)
 	if err := server.Run(); err != nil {
