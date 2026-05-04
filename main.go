@@ -30,6 +30,11 @@ func main() {
 	}
 	log.Printf("Environment: %s", appEnv)
 
+	// In development, print a reminder about the local API docs endpoint
+	if appEnv == "development" {
+		log.Printf("API docs available at http://localhost:%s/docs (if enabled)", cfg.Port)
+	}
+
 	server := NewServer(cfg)
 	if err := server.Run(); err != nil {
 		log.Fatalf("Server exited with error: %v", err)
